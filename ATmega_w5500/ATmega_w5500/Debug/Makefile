@@ -42,6 +42,7 @@ C_SRCS +=  \
 ../main.c \
 ../peripheral/spi.c \
 ../peripheral/uart.c \
+../w5500/socket.c \
 ../w5500/w5500.c
 
 
@@ -55,24 +56,28 @@ OBJS +=  \
 main.o \
 peripheral/spi.o \
 peripheral/uart.o \
+w5500/socket.o \
 w5500/w5500.o
 
 OBJS_AS_ARGS +=  \
 main.o \
 peripheral/spi.o \
 peripheral/uart.o \
+w5500/socket.o \
 w5500/w5500.o
 
 C_DEPS +=  \
 main.d \
 peripheral/spi.d \
 peripheral/uart.d \
+w5500/socket.d \
 w5500/w5500.d
 
 C_DEPS_AS_ARGS +=  \
 main.d \
 peripheral/spi.d \
 peripheral/uart.d \
+w5500/socket.d \
 w5500/w5500.d
 
 OUTPUT_FILE_PATH +=ATmega_w5500.elf
@@ -104,6 +109,13 @@ peripheral/spi.o: ../peripheral/spi.c
 	
 
 peripheral/uart.o: ../peripheral/uart.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000UL  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega328p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+w5500/socket.o: ../w5500/socket.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000UL  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega328p -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega328p" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

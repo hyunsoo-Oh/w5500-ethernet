@@ -8,5 +8,7 @@ peripheral\spi.c
 
 peripheral\uart.c
 
+w5500\socket.c
+
 w5500\w5500.c
 

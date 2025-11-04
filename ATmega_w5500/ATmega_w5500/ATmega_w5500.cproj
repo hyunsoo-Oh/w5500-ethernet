@@ -139,6 +139,12 @@
     <Compile Include="peripheral\uart.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="w5500\socket.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="w5500\socket.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="w5500\w5500.c">
       <SubType>compile</SubType>
     </Compile>

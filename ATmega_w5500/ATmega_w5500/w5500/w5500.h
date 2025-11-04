@@ -32,20 +32,18 @@ typedef struct {
 	uint8_t ip[4];
 	uint8_t port[2];
 	uint8_t gateway[4];
-	uint8_t subnet[4]
+	uint8_t subnet[4];
 	uint8_t mac[6];
 } Socket_t;
 
 void w5500_Init(void);
 
 uint8_t w5500_ReadVersion(void);
+
 uint8_t w5500_ReadByte(uint8_t bsb, uint16_t addr);
 void w5500_WriteByte(uint8_t bsb, uint16_t addr, uint8_t data);
 
 uint8_t w5500_ReadBuff(uint8_t bsb, uint16_t addr, uint8_t* data, uint8_t len);
 uint8_t w5500_WriteBuff(uint8_t bsb, uint16_t addr, uint8_t* data, uint8_t len);
-
-uint8_t w5500_SocketReceive(uint8_t socket, uint16_t addr, uint8_t* data, uint8_t len);
-uint8_t w5500_SocketSend(uint8_t socket, uint16_t addr, uint8_t* data, uint8_t len);
 
 #endif /* W5500_H_ */

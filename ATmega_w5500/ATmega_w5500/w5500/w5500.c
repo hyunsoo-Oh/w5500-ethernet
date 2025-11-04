@@ -107,51 +107,9 @@ uint8_t w5500_WriteBuff(uint8_t bsb, uint16_t addr, uint8_t* data, uint8_t len)
 	
 	spi_MasterWrite(W5500_CTRL(bsb, RWB_WRITE, 0x00));
 	
-	    uint8_t i = 0;
-	    do {
-		    spi_MasterWrite(data[i++]);
-	    } while (i < len);
-	
-	_delay_us(2);
-	SPI_CS_SET(DDRB, PORTB, spi_pins.cs);
-	
-	return (i == len) ? 1 : 0;
-}
-
-uint8_t w5500_SocketReceive(uint8_t socket, uint16_t addr, uint8_t* data, uint8_t len)
-{
-	SPI_CS_RESET(DDRB, PORTB, spi_pins.cs);
-	_delay_us(2);
-	
-	spi_MasterWrite((uint8_t)(addr >> 8));
-	spi_MasterWrite((uint8_t)(addr & 0xFF));
-	
-	spi_MasterWrite(W5500_CTRL(socket, RWB_READ, 0x00));
-	
 	uint8_t i = 0;
 	do {
-		data[i++] = spi_MasterRead();
-	} while (i < len);
-
-	_delay_us(2);
-	SPI_CS_SET(DDRB, PORTB, spi_pins.cs);
-	
-	return (i == len) ? 1 : 0;
-}
-
-uint8_t w5500_SocketSend(uint8_t socket, uint16_t addr, uint8_t* data, uint8_t len)
-{
-	SPI_CS_RESET(DDRB, PORTB, spi_pins.cs);
-	_delay_us(2);
-	
-	spi_MasterWrite((uint8_t)(addr >> 8));
-	spi_MasterWrite((uint8_t)(addr & 0xFF));
-	
-	spi_MasterWrite(W5500_CTRL(socket, RWB_WRITE, 0x00));
-	
-	uint8_t i = 0;
-	do {
-		spi_MasterWrite(data[i++]);
+	    spi_MasterWrite(data[i++]);
 	} while (i < len);
 	
 	_delay_us(2);
