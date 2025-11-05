@@ -17,10 +17,14 @@ uint8_t getSnTX_FSR(uint8_t socket, uint8_t* data);
 uint8_t getSnRX_RSR(uint8_t socket, uint8_t* data);
 
 uint8_t getSnTX_RD(uint8_t socket, uint8_t* data);	// 
+uint8_t getSnRX_RD(uint8_t socket, uint8_t* data);
 uint8_t setSnRX_RD(uint8_t socket, uint8_t* data);	//
 
+uint8_t getSnTX_WR(uint8_t socket, uint8_t* data);
 uint8_t setSnTX_WR(uint8_t socket, uint8_t* data);
 uint8_t getSnRX_WR(uint8_t socket, uint8_t* data);
 
+uint8_t Socket_Transmit(uint8_t socket, uint8_t* data, uint8_t len);
+uint8_t Socket_Receive(uint8_t socket, uint8_t* data);
 
 #endif /* SOCKET_H_ */

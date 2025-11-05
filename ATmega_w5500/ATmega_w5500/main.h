@@ -12,6 +12,4 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
-
-
 #endif /* MAIN_H_ */

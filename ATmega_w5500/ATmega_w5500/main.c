@@ -6,6 +6,7 @@
  */ 
 
 #include "main.h"
+#include <string.h>
 
 #include "peripheral/uart.h"
 #include "peripheral/spi.h"
@@ -33,7 +34,7 @@ int main(void)
 	
 	_delay_ms(500);
 	
-	uint8_t data[4];
+	uint8_t data[512] = "Hi~\n";
 	uint8_t status = SOCK_CLOSED;
 	uint8_t length[2] = { 0, 0 };
 	
@@ -59,8 +60,8 @@ int main(void)
 	while (w5500_ReadByte(W5500_BSB_Sn_REG(0), W5500_Sn_CR) != 0);
 	do
 	{
-		_delay_ms(1000);
 		status = w5500_ReadByte(W5500_BSB_Sn_REG(0), W5500_Sn_SR);
+		_delay_ms(1000);
 		uart0_printf("status = %d\n", status);
 	} while (status != SOCK_ESTABLISHED);
 	while (w5500_ReadByte(W5500_BSB_Sn_REG(0), W5500_Sn_CR) != 0);
@@ -69,10 +70,9 @@ int main(void)
     /* Replace with your application code */
     while (1) 
     {
-		if (getSnRX_RSR(0, length))
-		{
-			uart0_printf("RSR Length %d, %d\n", length[0], length[1]);	
-		}
+		size_t len = strnlen((const char*)data, sizeof(data));
+		Socket_Transmit(0, data, len);
+		uart0_printf("%s\n", data);
 		_delay_ms(2000);
     }
 }
