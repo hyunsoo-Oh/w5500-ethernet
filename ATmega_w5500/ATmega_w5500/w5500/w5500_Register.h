@@ -43,7 +43,7 @@
 #define W5500_Sn_RX_RD				0x0028
 
 typedef enum {
-	TCP = 1, UDP = 2, MACRAW = 3
+	TCP = 1, UDP = 2, MACRAW = 4
 } Sn_Mode_t;
 
 typedef enum {

@@ -18,10 +18,9 @@ static spi_pins_t spi_pins =
 	.cs = PB2
 };
 
-void w5500_Init(void)
+void w5500_CS_Enable(void)
 {
 	spi_MasterInit(&DDRB, spi_pins);
-	_delay_ms(10);
 }
 
 uint8_t w5500_ReadVersion(void)

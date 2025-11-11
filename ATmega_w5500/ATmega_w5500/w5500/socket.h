@@ -11,6 +11,13 @@
 
 #include "../main.h"
 
+void w5500_Init(W5500_Config_t *config);
+
+Sn_Status_t Socket_Open(uint8_t socket, Sn_Mode_t mode, uint16_t port);
+Sn_Status_t Socket_Connect(uint8_t socket, Dest_Config_t dest);
+Sn_Status_t Socket_Listen(uint8_t socket);	// 미완성 함수
+Sn_Status_t Socket_Close(uint8_t socket);
+
 // getSnTX_FSR : 송신 버퍼에서 쓸 수 있는 빈 공간의 크기 (초기값 : 0x0800)
 uint8_t getSnTX_FSR(uint8_t socket, uint8_t* data);
 // getSnRX_RSR : 수신 버퍼에 존재하는 읽을 수 있는 데이터의 크기 (초기값 : 0x0000)

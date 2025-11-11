@@ -29,14 +29,19 @@
 #define W5500_CTRL(bsb, rw, om)		( W5500_CTRL_BSB(bsb) | W5500_CTRL_RWB(rw) | W5500_CTRL_OM(om) )
 
 typedef struct {
-	uint8_t ip[4];
-	uint8_t port[2];
-	uint8_t gateway[4];
-	uint8_t subnet[4];
-	uint8_t mac[6];
-} Socket_t;
+	uint8_t ip[4];      // Source IP
+	uint16_t port;		// Source Port
+	uint8_t gateway[4]; // Gateway IP
+	uint8_t subnet[4];  // Subnet Mask
+	uint8_t mac[6];     // MAC Address
+} W5500_Config_t;
 
-void w5500_Init(void);
+typedef struct {
+	uint8_t ip[4];      // Destination IP
+	uint16_t port;		// Destination Port
+} Dest_Config_t;
+
+void w5500_CS_Enable(void);
 
 uint8_t w5500_ReadVersion(void);
 
